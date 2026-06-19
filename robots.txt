@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://straurictor05.github.io/i-gameportal-com-cn/sitemap.xml
