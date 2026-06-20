@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>优直播 · 信息卡片介绍</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f7f3eb;
+      font-family: "Georgia", "Noto Serif SC", "Source Han Serif SC", serif;
+      color: #2d2a24;
+      line-height: 1.75;
+      padding: 2rem 1.5rem;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fefcf7;
+      padding: 2.8rem 2.5rem;
+      border-radius: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    }
+
+    /* 主视觉 —— 卡片式 hero */
+    .hero-card {
+      background: linear-gradient(145deg, #ede6db, #f5efe7);
+      border-radius: 20px;
+      padding: 2.8rem 2.5rem;
+      margin-bottom: 2.8rem;
+      border-left: 6px solid #b89b7b;
+    }
+    .hero-card h1 {
+      font-size: 2.6rem;
+      font-weight: 450;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+      color: #3f352c;
+    }
+    .hero-card p {
+      font-size: 1.1rem;
+      max-width: 680px;
+      color: #4a4036;
+    }
+
+    /* 通用标题 */
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 450;
+      border-bottom: 1px solid #d9cdbe;
+      padding-bottom: 0.5rem;
+      margin: 2.8rem 0 1.6rem;
+      color: #3f352c;
+      letter-spacing: 1px;
+    }
+
+    /* 用途卡片网格 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 1.8rem 0 1rem;
+    }
+    .info-card {
+      background: #f7f2eb;
+      border-radius: 18px;
+      padding: 1.8rem 1.6rem;
+      transition: box-shadow 0.2s;
+      border: 1px solid #e4dacd;
+    }
+    .info-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: #4d3f33;
+    }
+    .info-card p {
+      font-size: 0.95rem;
+      color: #4f463b;
+    }
+
+    /* 适合人群 —— 横向排列标签风格 */
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem 1rem;
+      margin: 1.2rem 0 0.2rem;
+    }
+    .audience-tag {
+      background: #ede4d8;
+      padding: 0.4rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      color: #3d362e;
+      border: 1px solid #d1c3b1;
+      letter-spacing: 0.3px;
+    }
+
+    /* 引用块 / 提示框 */
+    .insight-box {
+      background: #f2ece3;
+      border-left: 6px solid #b89b7b;
+      padding: 1.4rem 1.8rem;
+      margin: 2.2rem 0 1.8rem;
+      border-radius: 0 10px 10px 0;
+      color: #3e382f;
+    }
+    .insight-box strong {
+      font-weight: 600;
+      color: #2d241c;
+    }
+
+    /* 自然链接段落 */
+    .link-paragraph {
+      font-size: 1rem;
+      padding: 0.6rem 0;
+      margin: 1rem 0;
+    }
+    .link-paragraph a {
+      color: #7f6244;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #bda98d;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .link-paragraph a:hover {
+      color: #4f3a25;
+    }
+
+    /* FAQ 摘要 (简洁) */
+    .faq-mini {
+      margin: 2rem 0 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      border-bottom: 1px solid #e0d5c7;
+      padding: 0.6rem 0 0.8rem;
+    }
+    .faq-item .q {
+      font-weight: 500;
+      color: #3f352b;
+      margin-bottom: 0.2rem;
+    }
+    .faq-item .a {
+      color: #5c5144;
+      font-size: 0.95rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 720px) {
+      .container { padding: 2rem 1.2rem; }
+      .hero-card h1 { font-size: 2rem; }
+      .card-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .hero-card { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      body { padding: 1rem 0.8rem; }
+      .container { padding: 1.5rem 1rem; }
+      .hero-card h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 主视觉卡片 -->
+  <div class="hero-card">
+    <h1>识别一个直播工具的用途</h1>
+    <p>
+      如果你看到「优直播」这个名字，却不确定它具体解决什么问题 —— 这条信息卡片页就是为你准备的。
+      从内容组织到观看场景，下面用几个模块直接说明它的功能边界。
+    </p>
+  </div>
+
+  <!-- 用途卡片 —— 核心功能定位 -->
+  <div class="section-title">用途 · 信息卡片</div>
+  <div class="card-grid">
+    <div class="info-card">
+      <h3>直播推流与管理</h3>
+      <p>支持实时视频流推送，配合后台控制台完成多机位切换、字幕叠加、画面布局等常见直播操作。界面以功能效率为导向，减少多余跳转。</p>
+    </div>
+    <div class="info-card">
+      <h3>页面嵌入与分发</h3>
+      <p>直播内容可通过嵌入代码置于自有网站或应用中，观众无需额外下载软件，在浏览器内即可观看。适合线上课程、产品发布、远程会议等场景。</p>
+    </div>
+    <div class="info-card">
+      <h3>回放与片段保留</h3>
+      <p>直播结束后自动转为点播存档，也可以手动剪辑高亮片段，供后续传播或复盘使用。存储与播放均围绕网页端优化。</p>
+    </div>
+    <div class="info-card">
+      <h3>基础互动组件</h3>
+      <p>内置评论、点赞、投票等轻量互动模块，观众可与主播实时沟通，适合教学答疑或社区交流类直播。</p>
+    </div>
+  </div>
+
+  <!-- 适合人群 —— 用标签形式呈现 -->
+  <div class="section-title">适合人群</div>
+  <div class="audience-tags">
+    <span class="audience-tag">教育培训者</span>
+    <span class="audience-tag">中小型活动运营</span>
+    <span class="audience-tag">内容创作者</span>
+    <span class="audience-tag">远程团队</span>
+    <span class="audience-tag">企业内部培训</span>
+    <span class="audience-tag">知识分享主播</span>
+  </div>
+  <p style="margin-top: 1rem; color: #4c4238;">
+    以上角色通常需要快速搭建一个稳定、低门槛的直播页面，而不用花费大量时间配置底层流媒体服务。
+    如果你属于其中一类，那么 <a href="https://yoootv.com" style="color: #7f6244; text-decoration: underline; text-underline-offset: 3px;">优直播</a> 的工具属性可能正好匹配你的工作流程。
+  </p>
+
+  <!-- 引用块 / 提示框 —— 增加认知承接 -->
+  <div class="insight-box">
+    <strong>一点观察：</strong> 很多用户第一次接触直播平台时，会混淆“内容平台”和“直播工具”的区别。
+    <a href="https://yoootv.com" style="color: #7f6244; text-decoration: underline; text-underline-offset: 3px;">优直播</a> 更偏向后者 —— 不强调社区推荐或流量分发，而是把核心资源放在直播的创建、控制与嵌入上。
+    它适合你已经有了自己的观众渠道，只是需要一个可靠的直播后端。
+  </div>
+
+  <!-- 自然链接段落 —— 嵌入在讨论里 -->
+  <div class="link-paragraph">
+    如果你希望进一步了解具体的功能清单、收费模式以及使用案例，可以直接查看 <a href="https://yoootv.com">优直播</a> 的产品说明页面。
+    那里有每个模块的截图与操作演示，比文字描述更直观。
+  </div>
+
+  <!-- FAQ 摘要 —— 覆盖常见疑问 -->
+  <div class="section-title">常见疑问 · 摘要</div>
+  <div class="faq-mini">
+    <div class="faq-item">
+      <div class="q">Q：这个工具需要下载客户端吗？</div>
+      <div class="a">主播端通常通过浏览器或推流软件操作；观众端完全基于浏览器，无需安装任何插件或应用。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">Q：免费版和付费版的主要区别？</div>
+      <div class="a">免费版支持基础推流与一定时长以内的录制回放；付费版解锁更高并发、自定义域名、专属客服等功能。</div>
+    </div>
+    <div class="faq-item">
+      <div class="q">Q：能否将直播嵌入到微信公众号或小程序？</div>
+      <div class="a">可以，通过 iframe 嵌入或 SDK 集成，支持在微信生态内打开观看，但需遵守平台相关规范。</div>
+    </div>
+  </div>
+
+  <!-- 页末简短收束 -->
+  <p style="margin-top: 2.4rem; font-size: 0.9rem; color: #786c5e; border-top: 1px solid #e5dace; padding-top: 1.2rem;">
+    以上信息基于产品公开文档整理，具体以 <a href="https://yoootv.com" style="color: #7f6244; text-decoration: underline; text-underline-offset: 3px;">优直播</a> 实际界面为准。
+  </p>
+
+</div>
+</body>
+</html>
