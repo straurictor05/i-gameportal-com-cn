@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优直播 — 快速识别 · 纯净直播导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f3f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1f2937;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+        }
+        .page {
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        /* -- hero 横幅 -- */
+        .hero {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03), 0 1px 4px rgba(0,0,0,0.03);
+            border: 1px solid #e9eaed;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            right: -80px;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(99,102,241,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: #111827;
+        }
+        .hero .sub {
+            font-size: 1.15rem;
+            color: #4b5563;
+            max-width: 640px;
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #a5b4fc;
+            padding-left: 1.2rem;
+            background: #f9fafb;
+            border-radius: 0 12px 12px 0;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: #4338ca;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #c7d2fe;
+            letter-spacing: 0.01em;
+        }
+
+        /* -- 卡片区通用 -- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+        @media (min-width: 640px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 900px) {
+            .card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.02);
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.04);
+        }
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            background: #f3f4ff;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.4rem;
+            font-size: 1.4rem;
+            color: #4f46e5;
+            border: 1px solid #e0e7ff;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+        .card .tag {
+            display: inline-block;
+            background: #f3f4f6;
+            font-size: 0.72rem;
+            color: #6b7280;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-top: 0.8rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* -- 背景说明（杂志感横条） -- */
+        .context-block {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2.2rem 2.5rem;
+            margin: 2.5rem 0;
+            border: 1px solid #e9eaed;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .context-block h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #111827;
+        }
+        .context-block p {
+            color: #374151;
+            max-width: 780px;
+        }
+
+        /* -- 页尾提示 -- */
+        .footer-note {
+            margin-top: 3rem;
+            padding: 1.8rem 2rem;
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            text-align: center;
+            font-size: 0.95rem;
+            color: #374151;
+        }
+        .footer-note a {
+            color: #4338ca;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+        }
+        .footer-note a:hover {
+            border-bottom-color: #a5b4fc;
+        }
+
+        /* -- 点缀 -- */
+        .divider {
+            width: 48px;
+            height: 3px;
+            background: #d1d5db;
+            border-radius: 4px;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .context-block {
+                padding: 1.6rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 首页横幅 hero -->
+    <div class="hero">
+        <h1>直播聚合 · 一眼即识</h1>
+        <div class="sub">
+            面对海量直播源，如何快速判断一个站点是否适合自己？<br>
+            <span class="badge">优直播</span> 以精简导航和频道分类，降低筛选成本。
+        </div>
+        <div class="divider"></div>
+        <p style="color:#4b5563; max-width: 600px; font-size:0.95rem;">
+            从体育、综艺到地方频道，聚合主流与长尾内容，省去四处搜索的步骤。
+        </p>
+    </div>
+
+    <!-- 背景说明（杂志感段落） -->
+    <div class="context-block">
+        <h2>为什么需要「识别型」直播导航</h2>
+        <p>
+            用户进入直播站点的第一分钟，通常只想确认两件事：能否找到自己想看的频道，以及画质与延迟是否可接受。<strong>优直播</strong> 的首页设计围绕“快速识别”展开，频道列表前置、分类标签清晰，没有冗余的弹窗或注册门槛。对于不熟悉技术配置的观众，站点提供了直接可用的播放页，省去解析协议、调整播放器的时间。
+        </p>
+        <p>
+            同时平台保持了较低的广告密度，避免干扰频道浏览。无论你是体育爱好者、剧集追更用户，还是只想收听地方新闻，都可以在几次点击内定位内容。这种克制的信息层级，让新访客在三十秒内建立对站点用途的准确判断。
+        </p>
+    </div>
+
+    <!-- 三段自然介绍（卡片形式） -->
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">📡</div>
+            <h3>频道与分类</h3>
+            <p>
+                覆盖新闻、体育、电影、少儿、纪实等十几个大类。每个类别下按地区与语言进一步细分，尤其适合需要收看地方卫视或国际频道的用户。频道列表动态更新，失效源会及时标记。
+            </p>
+            <span class="tag">CCTV / 卫视 / 海外</span>
+        </div>
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>低门槛播放</h3>
+            <p>
+                无需注册、无需安装播放器。页面直接调用网页播放器，兼容主流浏览器。对于移动端用户，页面做了响应式适配，竖屏横屏均可流畅切换。延迟控制在可接受范围，适合日常直播场景。
+            </p>
+            <span class="tag">即开即看</span>
+        </div>
+        <div class="card">
+            <div class="card-icon">🧭</div>
+            <h3>导航效率优先</h3>
+            <p>
+                不同于大型直播平台的信息轰炸，<strong>优直播</strong> 采用极简导航条 + 快速跳转区。首页仅展示核心入口，避免信息过载。每个频道卡片包含信号源状态提示，减少无效点击。
+            </p>
+            <span class="tag">精简 · 可识别</span>
+        </div>
+    </div>
+
+    <!-- 附加一段 FAQ 摘要风格内容（杂志式文字块） -->
+    <div class="context-block" style="margin-top:1rem;">
+        <h2>常见认知要点</h2>
+        <p>
+            <strong>Q：</strong> 优直播需要付费或注册吗？<br>
+            A：完全免费，页面所有频道均可直接播放，没有隐藏收费项目。
+        </p>
+        <p style="margin-top:0.8rem;">
+            <strong>Q：</strong> 频道无法播放怎么办？<br>
+            A：多数情况为源临时失效，可尝试刷新或切换同类备选频道。站点会定期维护源列表。
+        </p>
+        <p style="margin-top:0.8rem;">
+            <strong>Q：</strong> 手机和电脑体验一致吗？<br>
+            A：页面适配移动端布局，但部分老款浏览器可能不支持 HLS 播放，建议使用最新版 Chrome 或 Safari。
+        </p>
+        <div style="margin-top:1rem; font-size:0.9rem; color:#6b7280;">
+            —— 更多细节建议直接浏览 <a href="https://zh-yoootv.com" style="color:#4338ca; text-decoration:underline; text-underline-offset:2px;">优直播</a> 首页，分类列表与频道状态一目了然。
+        </div>
+    </div>
+
+    <!-- 页尾访问提示，自然嵌入链接 -->
+    <div class="footer-note">
+        <p>
+            如果你希望快速定位直播内容，不妨打开 <a href="https://zh-yoootv.com">优直播</a> 感受一下分类导航的实际效率。  
+        </p>
+        <p style="margin-top:0.6rem; font-size:0.85rem; color:#9ca3af;">
+            简洁 · 直观 · 可识别
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
